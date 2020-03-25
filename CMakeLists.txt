@@ -15,6 +15,11 @@ set_target_properties(extern_binary PROPERTIES
 
 set(ExternCacheVarTest ON CACHE BOOL "Another variable to search for in CMakeCache")
 
+# Let's see if we got the parameter passed from ExternalProject_Add, and what it was
+message("BRACKET_BINARY_DIRR="${BRACKET_BINARY_DIR})
+message("VAR_BINARY_DIR="${VAR_BINARY_DIR})
+message("SOMETHING_ELSE="${SOMETHING_ELSE})
+
 # Adds logic to INSTALL.vcproj to copy app.exe to destination directory
 install (TARGETS extern_binary
          RUNTIME DESTINATION ${PROJECT_SOURCE_DIR}/_install)

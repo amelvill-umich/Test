@@ -5,9 +5,6 @@ message("Hello from the external repository!")
 # Adds sources to the Solution Explorer
 add_executable (extern_binary testing.c)
 
-# Properties->Linker->Input->Additional Dependencies
-target_link_libraries (extern_binary  math)
-
 # Creates a folder "executables" and adds target 
 # project (app.vcproj) under it
 set_property(TARGET extern_binary PROPERTY FOLDER "executables")

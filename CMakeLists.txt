@@ -1,5 +1,10 @@
 message("Hello from the external repository!")
 
+message("CMAKE_MODULE_PATH before append is " ${CMAKE_MODULE_PATH})
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "FromExternal")
+
+message("CMAKE_MODULE_PATH after append is " ${CMAKE_MODULE_PATH})
+
 # Set Properties->General->Configuration Type to Application(.exe)
 # Creates app.exe with the listed sources (main.cxx)
 # Adds sources to the Solution Explorer
@@ -16,10 +21,17 @@ set_target_properties(extern_binary PROPERTIES
 set(ExternCacheVarTest ON CACHE BOOL "Another variable to search for in CMakeCache")
 
 # Let's see if we got the parameter passed from ExternalProject_Add, and what it was
-message("BRACKET_BINARY_DIRR="${BRACKET_BINARY_DIR})
-message("VAR_BINARY_DIR="${VAR_BINARY_DIR})
-message("SOMETHING_ELSE="${SOMETHING_ELSE})
 
+# gives BRACKET_BINARY_DIR=C:/_FILES/home/CMake-VisualStudio-Example/build/extern-prefix/src/extern-build
+# it's weird, why would the parent project give this directory? It can't have come from anywhere else...
+message("BRACKET_BINARY_DIR=" ${BRACKET_BINARY_DIR})
+
+#nothing, because the parent project didn't have ${BINARY_DIR} set to anything at all
+message("VAR_BINARY_DIR=" ${VAR_BINARY_DIR})
+
+# works, as you'd expect
+message("SOMETHING_ELSE=" ${SOMETHING_ELSE}) #works
+ 
 # Adds logic to INSTALL.vcproj to copy app.exe to destination directory
 install (TARGETS extern_binary
          RUNTIME DESTINATION ${PROJECT_SOURCE_DIR}/_install)

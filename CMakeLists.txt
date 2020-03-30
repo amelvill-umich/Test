@@ -31,7 +31,9 @@ message("VAR_BINARY_DIR=" ${VAR_BINARY_DIR})
 
 # works, as you'd expect
 message("SOMETHING_ELSE=" ${SOMETHING_ELSE}) #works
+
+include(CPack)
  
 # Adds logic to INSTALL.vcproj to copy app.exe to destination directory
 install (TARGETS extern_binary
-         RUNTIME DESTINATION ${PROJECT_SOURCE_DIR}/_install)
+         RUNTIME DESTINATION "ExternPicklesDestination")

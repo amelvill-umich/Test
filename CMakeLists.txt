@@ -5,6 +5,8 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "FromExternal")
 
 message("CMAKE_MODULE_PATH after append is " ${CMAKE_MODULE_PATH})
 
+message("CMAKE_INSTALL_PREFIX is " ${CMAKE_INSTALL_PREFIX})
+
 # Set Properties->General->Configuration Type to Application(.exe)
 # Creates app.exe with the listed sources (main.cxx)
 # Adds sources to the Solution Explorer
